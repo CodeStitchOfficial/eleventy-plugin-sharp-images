@@ -1,0 +1,40 @@
+{
+    "name": "@codestitchofficial/eleventy-plugin-sharp-images",
+    "version": "1.0.0",
+    "description": "An Eleventy plugin for image processing using Sharp",
+    "main": "lib/eleventy-plugin-sharp-images.js",
+    "keywords": [
+        "eleventy",
+        "eleventy-plugin",
+        "11ty",
+        "sharp",
+        "images"
+    ],
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "directories": {
+        "lib": "lib",
+        "test": "test"
+    },
+    "dependencies": {
+        "@11ty/eleventy": "^2.0.1",
+        "cross-env": "^7.0.3",
+        "netlify-plugin-cache": "^1.0.3",
+        "sharp": "^0.33.4"
+    },
+    "scripts": {
+        "start": "npx @11ty/eleventy --serve",
+        "build": "npx @11ty/eleventy"
+    },
+    "author": "CodeStitch",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CodeStitchOfficial/eleventy-plugin-sharp-images.git"
+    },
+    "bugs": {
+        "url": "https://github.com/CodeStitchOfficial/eleventy-plugin-sharp-images/issues"
+    },
+    "homepage": "https://github.com/CodeStitchOfficial/eleventy-plugin-sharp-images#readme"
+}

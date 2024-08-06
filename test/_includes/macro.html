@@ -1,0 +1,4 @@
+{% macro testImage(url, alt) %}
+    <img src="{% getUrl url | resize({ width: 1, height: 1 }) | webp %}" alt="{{ alt }}" style="width: 10rem; height: 10rem;">
+    <h1>test</h1>
+{% endmacro %}
