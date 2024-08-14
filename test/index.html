@@ -12,7 +12,7 @@
                 {% set logoUrl = "test/assets/images/" + logo.path %}
                 <source srcset="{% getUrl logoUrl | resize({ height: 50, width: 50 }) | avif %}" media="(max-width: 600px)" type="image/avif">
                 <source srcset="{% getUrl logoUrl | resize({ height: 50, width: 50 }) | webp %}" media="(max-width: 600px)" type="image/webp">
-                <source srcset="{% getUrl logoUrl | resize({ height: 400, width: 400 }) | png %}" media="(min-width: 601px)" type="image/jpg">
+                <source srcset="{% getUrl logoUrl | resize({ height: 400, width: 400 }) %}" media="(min-width: 601px)" type="image/jpg">
                 <img src="{% getUrl logoUrl | resize({ height: 400, width: 400 }) | png %}" alt="{{ logo.alt }}">
             </picture>
         {% endfor %}
