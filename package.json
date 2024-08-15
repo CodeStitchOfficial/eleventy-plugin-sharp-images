@@ -1,6 +1,6 @@
 {
     "name": "@codestitchofficial/eleventy-plugin-sharp-images",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "An Eleventy plugin for image processing using Sharp",
     "main": "lib/eleventy-plugin-sharp-images.js",
     "keywords": [
