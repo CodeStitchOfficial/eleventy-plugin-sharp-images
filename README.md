@@ -4,6 +4,8 @@ An Eleventy plugin that brings the full capabilities of Sharp to your static sit
 
 This plugin is a continuation of the now-abandoned [eleventy-plugin-sharp](https://github.com/luwes/eleventy-plugin-sharp) by [luwes](https://github.com/luwes/).
 
+A tutorial video covering all of the information in this README can be found [on YouTube](https://www.youtube.com/watch?v=scYFC1LRfPg)
+
 ## Table of Contents
 
 -   [Features](#features)
@@ -11,6 +13,7 @@ This plugin is a continuation of the now-abandoned [eleventy-plugin-sharp](https
 -   [Configuration](#configuration)
 -   [Usage](#usage)
     -   [Examples](#examples)
+-   [VSCode Snippet](#vscode-snippet)
 -   [How It Works](#how-it-works)
 -   [Special Thanks](#special-thanks)
 
@@ -100,6 +103,20 @@ Each Sharp transformation can be used as a filter, with options passed as an obj
 {% getUrl "/assets/images/image.jpg" | resize({ height: 50, width: 50, position: "top" }) | avif %}
 ```
 
+Please, make sure each transformation option has a value associated with its key. Failing to do so will result in errors being thrown when building the site:
+
+**Incorrect**
+
+```nunjucks
+{% getUrl "/assets/images/image.jpg" | resize({ height: , width: 50 }) | avif %}
+```
+
+**Correct**
+
+```nunjucks
+{% getUrl "/assets/images/image.jpg" | resize({ height: 50, width: 50 }) | avif %}
+```
+
 <a href="#examples"></a>
 
 ### Examples
@@ -127,6 +144,38 @@ Each Sharp transformation can be used as a filter, with options passed as an obj
 ```nunjucks
 {% getUrl "/assets/images/image.jpg" | rotate(90) | grayscale %}
 ```
+
+<a href="#vscode-snippet"></a>
+
+## VSCode Snippet
+
+For VSCode users, we've created a snippet that can help streamline your workflow when using the plugin:
+
+```
+    "eleventy-plugin-sharp-images Snippit": {
+        "prefix": "respimg",
+        "body": [
+            "<picture class=\"${1}\">",
+            "   <!--Mobile Image-->",
+            "   <source media=\"(max-width: 600px)\" srcset=\"{% getUrl \"${2:/assets/images/placeholder.jpg}\" | resize({ width: ${3}, height: ${4} }) | avif %}\" type=\"image/avif\">",
+            "   <source media=\"(max-width: 600px)\" srcset=\"{% getUrl \"${2:/assets/images/placeholder.jpg}\" | resize({ width: ${3}, height: ${4} }) | webp %}\" type=\"image/webp\">",
+            "   <source media=\"(max-width: 600px)\" srcset=\"{% getUrl \"${2:/assets/images/placeholder.jpg}\" | resize({ width: ${3}, height: ${4} }) | jpeg %}\" type=\"image/jpeg\">",
+            "   <!--Tablet Image-->",
+            "   <source media=\"(max-width: 1024px)\" srcset=\"{% getUrl \"${2:/assets/images/placeholder.jpg}\" | resize({ width: ${5}, height: ${6} }) | avif %}\" type=\"image/avif\">",
+            "   <source media=\"(max-width: 1024px)\" srcset=\"{% getUrl \"${2:/assets/images/placeholder.jpg}\" | resize({ width: ${5}, height: ${6} }) | webp %}\" type=\"image/webp\">",
+            "   <source media=\"(max-width: 1024px)\" srcset=\"{% getUrl \"${2:/assets/images/placeholder.jpg}\" | resize({ width: ${5}, height: ${6} }) | jpeg %}\" type=\"image/jpeg\">",
+            "   <!--Desktop Image-->",
+            "   <source media=\"(min-width: 1024px)\" srcset=\"{% getUrl \"${2:/assets/images/placeholder.jpg}\" | resize({ width: ${7}, height: ${8} }) | avif %}\" type=\"image/avif\">",
+            "   <source media=\"(min-width: 1024px)\" srcset=\"{% getUrl \"${2:/assets/images/placeholder.jpg}\" | resize({ width: ${7}, height: ${8} }) | webp %}\" type=\"image/webp\">",
+            "   <source media=\"(min-width: 1024px)\" srcset=\"{% getUrl \"${2:/assets/images/placeholder.jpg}\" | resize({ width: ${7}, height: ${8} }) | jpeg %}\" type=\"image/jpeg\">",
+            "   <img src=\"{% getUrl \"${2:/assets/images/placeholder.jpg}\" | resize({ width: ${7}, height: ${8} }) | jpeg %}\" alt=\"${9}\" width=\"${10}\" height=\"${11}\" loading=\"${12:lazy}\" decoding=\"async\" ${13:aria-hidden=\"true\"}>",
+            "</picture>"
+        ],
+        "description": "eleventy-plugin-sharp-images Snippit"
+    }
+```
+
+Simply, place this into your snippets file for the HTML language in VSCode. More information on installing and using the snippet can be found within the appropriate section on the [YouTube tutorial video](https://youtu.be/scYFC1LRfPg?si=pMuDRu3FbiCNq8Ac&t=1532).
 
 <a href="#how-it-works"></a>
 
